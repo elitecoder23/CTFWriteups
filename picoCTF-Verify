@@ -1,0 +1,38 @@
+CTF created by Jeffrey John
+
+Description
+People keep trying to trick my players with imitation flags. I want to make sure they get the real thing! I'm going to provide the SHA-256 hash and a decrypt script to help you know that my flags are legitimate.
+Additional details will be available after launching your challenge instance.
+
+
+
+Details:
+  - You are provided with a checksum.txt, decrypt.sh, and files folder
+  - checksum.txt creates the sha256 hash that will be used to cross reference with the files to find which file is the correct file 
+  - the decrypt.sh file is a bash script for decrypting the correct file. If you run this script on the wrong(fake) file, it will give an error message
+
+
+  Solution:
+
+  I started off with changing directory into the files folder to see it's contents. When I ran 'ls' in the directory, I saw nearly a thousand files in it. 
+
+  This means that running the script against every file in hope to decrypt the right file would not be efficient
+
+  To get the hash for every file I decided to run this command
+  - sha256sum files/*
+  - This command gets the hash signature for every single file in the foldder. This was convenient because it outputted the hash of every file and then the name of the file associated with it in a list
+
+  To check the given hash against each hash, I copy and pasted the whole list that was outputted in my terminal and put it into a notepad file.
+
+  After, I pressed control f and pasted the given hash into the search bar to parse though the notepad file. As expected, I found a matching and exact hash alongside the file that it was associated with
+
+  After discovering the file, I ran this command:
+  - ./decrypt files/<filename>
+
+After running this on the file, the output was the flag
+
+Reflection:
+
+I don't think this was the right way to do it but it was the way that made logical sense to me. One of the tags for the problem was 'grep' so I assume I was supposed to grep or pipe in one of the commands
+
+Besides that, this was a good entry level CTF and I look forward to doing more challenging ones
